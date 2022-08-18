@@ -6,11 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.Movie_CRUD.model.display_movie;
-import com.example.Movie_CRUD.model.movie;
 
-public interface MovieRepository extends JpaRepository<movie, Long>{
+public interface displayRepos extends JpaRepository<display_movie, Integer>{
 	
-	@Query(value = "SELECT new com.bethelcrm.bbcmembersmanagementsystem.dto.ZoneMemDto(movie.movie_id,movie.title,movie.tagline,movie.overview,movie.vote_average,movie.popularity,movie.release_date)"+ "FROM movie", nativeQuery = true)
+	@Query(value = "SELECT movie.movie_id,movie.title,movie.tagline,movie.overview,movie.vote_average,movie.popularity,movie.release_date FROM movie", nativeQuery = true)
     List<display_movie> fordisplay();
 	
     @Query(value="SELECT person_name FROM person where person_id= ?1",nativeQuery = true)
@@ -24,5 +23,5 @@ public interface MovieRepository extends JpaRepository<movie, Long>{
     
     @Query(value="SELECT genre_id FROM movie_genre where movie_id= ?1",nativeQuery = true)
     List<Integer> getgenreid(long id);
-    
+
 }

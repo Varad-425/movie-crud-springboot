@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MovieCrudApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("server.connection-timeout","-1");
 		SpringApplication.run(MovieCrudApplication.class, args);
 	}
 
