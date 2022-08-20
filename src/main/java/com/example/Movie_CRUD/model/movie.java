@@ -1,75 +1,78 @@
 package com.example.Movie_CRUD.model;
-
-
-import javax.persistence.Column;
+import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
+
 
 @Entity
-@Table(name="movie")
 public class movie {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="movie_id")
-	private long id;
-	
-	@Column(name="title")
-	private String m_name;
-	
-	@Column(name = "budget")
-	private String budget;
-
-	@Column(name = "homepage")
+	private Integer movie_id;
+	private String title;
+	private int budget;
 	private String homepage;
-	
-	@Column(name = "revenue")
+	private String overview;
+	private float popularity;
+	private Date release_date;
 	private String revenue;
-
-	@Column(name = "runtime")
-	private String runtime;
-	
-	@Column(name = "movie_status")
+	private int runtime;
 	private String movie_status;
-	
-	@Column(name = "vote_average")
-	private double imdbRating;
-
-	@Column(name = "popularity")
-	private double popularity;
-
-	@Column(name = "release_date")
-	private String date;
-
-	@Column(name = "tagline")
 	private String tagline;
+	private float vote_average;
+	private int vote_count;
+	private String genre;
+	private String actor;
 
-	@Column(name = "overview")
-	private String description;
+	
 
-	public long getId() {
-		return id;
+	
+
+	public movie() {
+    }
+
+	public movie(Integer movie_id, String title, int budget, String homepage, String overview, float popularity,
+			Date release_date, String revenue, int runtime, String movie_status, String tagline, float vote_average,
+			int vote_count,String genre,String actor) {
+
+		this.movie_id = movie_id;
+		this.title = title;
+		this.budget = budget;
+		this.homepage = homepage;
+		this.overview = overview;
+		this.popularity = popularity;
+		this.release_date = release_date;
+		this.revenue = revenue;
+		this.runtime = runtime;
+		this.movie_status = movie_status;
+		this.tagline = tagline;
+		this.vote_average = vote_average;
+		this.vote_count = vote_count;
+		this.genre = genre;
+		this.actor=actor;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	@Id
+	public Integer getMovie_id() {
+		return movie_id;
 	}
 
-	public String getM_name() {
-		return m_name;
+	public void setMovie_id(Integer movie_id) {
+		this.movie_id = movie_id;
 	}
 
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public String getTitle() {
+		return title;
 	}
 
-	public String getBudget() {
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getBudget() {
 		return budget;
 	}
 
-	public void setBudget(String budget) {
+	public void setBudget(int budget) {
 		this.budget = budget;
 	}
 
@@ -81,6 +84,30 @@ public class movie {
 		this.homepage = homepage;
 	}
 
+	public String getOverview() {
+		return overview;
+	}
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+
+	public float getPopularity() {
+		return popularity;
+	}
+
+	public void setPopularity(float popularity) {
+		this.popularity = popularity;
+	}
+
+	public Date getRelease_date() {
+		return release_date;
+	}
+
+	public void setRelease_date( Date release_date) {
+		this.release_date = release_date;
+	}
+
 	public String getRevenue() {
 		return revenue;
 	}
@@ -89,11 +116,11 @@ public class movie {
 		this.revenue = revenue;
 	}
 
-	public String getRuntime() {
+	public int getRuntime() {
 		return runtime;
 	}
 
-	public void setRuntime(String runtime) {
+	public void setRuntime(int runtime) {
 		this.runtime = runtime;
 	}
 
@@ -105,30 +132,6 @@ public class movie {
 		this.movie_status = movie_status;
 	}
 
-	public double getImdbRating() {
-		return imdbRating;
-	}
-
-	public void setImdbRating(double imdbRating) {
-		this.imdbRating = imdbRating;
-	}
-
-	public double getPopularity() {
-		return popularity;
-	}
-
-	public void setPopularity(double popularity) {
-		this.popularity = popularity;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 	public String getTagline() {
 		return tagline;
 	}
@@ -137,13 +140,44 @@ public class movie {
 		this.tagline = tagline;
 	}
 
-	public String getDescription() {
-		return description;
+	public float getVote_average() {
+		return vote_average;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setVote_average(float vote_average) {
+		this.vote_average = vote_average;
 	}
 
+	public int getVote_count() {
+		return vote_count;
+	}
+
+	public void setVote_count(int vote_count) {
+		this.vote_count = vote_count;
+	}
+	
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getActor() {
+		return actor;
+	}
+
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+
+	@Override
+	public String toString() {
+		return "movie [movie_id=" + movie_id + ", title=" + title + ", budget=" + budget + ", homepage=" + homepage
+				+ ", overview=" + overview + ", popularity=" + popularity + ", release_date=" +release_date+ ", revenue=" + revenue + ", runtime=" + runtime + ", movie_status=" + movie_status + ", tagline="
+				+ tagline + ", vote_average=" + vote_average + ", vote_count=" + vote_count + ",genre="+genre+",actor="+actor+"]";
+	}
+	
+	
 
 }

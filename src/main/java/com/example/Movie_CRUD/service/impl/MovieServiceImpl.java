@@ -14,29 +14,24 @@ import com.example.Movie_CRUD.model.actors;
 import com.example.Movie_CRUD.model.display_movie;
 import com.example.Movie_CRUD.model.genre;
 import com.example.Movie_CRUD.model.movie;
-import com.example.Movie_CRUD.repository.MovieRepository;
+import com.example.Movie_CRUD.repository.movieRepository;
 import com.example.Movie_CRUD.repository.displayRepos;
+import com.example.Movie_CRUD.repository.movieRepository;
 import com.example.Movie_CRUD.service.MovieService;
 
 @Service
 public class MovieServiceImpl implements MovieService{
 
 	
-	private MovieRepository repo;
+	private movieRepository repo;
 	private displayRepos repos;
 	
-	public MovieServiceImpl(MovieRepository repo,displayRepos repos) {
+	public MovieServiceImpl(movieRepository repo,displayRepos repos) {
 		super();
 		this.repo=repo;
 		this.repos=repos;
 	}
 
-
-	@Override
-	public List<movie> getAllMovies() {
-		// TODO Auto-generated method stub
-		return repo.findAll();
-	}
 
 
 	@SuppressWarnings("null")
@@ -75,5 +70,70 @@ public class MovieServiceImpl implements MovieService{
 		return flist;
 	}
 
+
+	public List<movie> listAll() {
+		return repo.findAll();
+	}
+
+
+
+	public List<movie> listgenre(movie movies) {
+		List<movie> genrekeyword = repo.findAll();
+		List<movie> filteredList = new ArrayList<>();
+
+		for (movie movie1 : genrekeyword) {
+			if (movie1.getGenre().toString().equals(movies.getGenre().toString())) {
+				filteredList.add(movie1);
+				System.out.println(movie1.getGenre());
+
+			}
+		}
+		return filteredList;
+	}
+
+
+
+	public List<movie> listactor(movie movies) {
+		List<movie> actorkeyword = repo.findAll();
+		List<movie> filteredList = new ArrayList<>();
+
+		for (movie movie1 : actorkeyword) {
+
+			if (movie1.getActor().toString().equals(movies.getActor().toString())) {
+				filteredList.add(movie1);
+				System.out.println(movie1.getActor());
+
+			}
+		}
+		return filteredList;
+	}
+
+
+
+	public movie get(Integer movie_id) {
+		return repo.findById(movie_id).get();
+	}
+
+
+
+	public List<movie> getMovieByRuntimeGreaterThan(Integer runtime) {
+		List<movie> allMovie = listAll();
+		List<movie> movieRuntimeGreaterThan = new ArrayList<>();
+		for(int i=0;i<allMovie.size();i++)
+		{
+			if(allMovie.get(i).getRuntime() >= runtime)
+			{
+				movieRuntimeGreaterThan.add(allMovie.get(i));
+			}
+		}
+		return movieRuntimeGreaterThan;
+	}
+
+
+
+	@Override
+	public void save(movie movies) {
+		repo.save(movies);
+	}
 
 }
